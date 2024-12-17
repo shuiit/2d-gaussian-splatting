@@ -269,15 +269,19 @@ if __name__ == "__main__":
     print("Optimizing " + args.model_path)
     op = op.extract(args)
 
-    op.lambda_dist = 1000
-    op.depth_ratio = 1
+    op.lambda_dist = 10
+    op.depth_ratio = 1#0
+    lp = lp.extract(args)
+    pp = pp.extract(args)
     # Initialize system state (RNG)
     safe_state(args.quiet)
 
     # Start GUI server, configure and run training
     network_gui.init(args.ip, args.port)
     torch.autograd.set_detect_anomaly(args.detect_anomaly)
-    training(lp.extract(args), op, pp.extract(args), args.test_iterations, args.save_iterations, args.checkpoint_iterations, args.start_checkpoint)
+    lp.model_path = os.path.join(f'D:/Documents/gs_output/',f'lego_bowl_2d_dr{op.depth_ratio}_ld{op.lambda_dist}')
+    # lp.source_path = 'D:/Documents/gs_mov_trans/bowl_with_lego'
+    training(lp, op, pp, args.test_iterations, args.save_iterations, args.checkpoint_iterations, args.start_checkpoint)
 
     # All done
     print("\nTraining complete.")
