@@ -279,7 +279,7 @@ if __name__ == "__main__":
     # Start GUI server, configure and run training
     network_gui.init(args.ip, args.port)
     torch.autograd.set_detect_anomaly(args.detect_anomaly)
-    lp.model_path = os.path.join(f'D:/Documents/gs_output/',f'lego_bowl_2d_dr{op.depth_ratio}_ld{op.lambda_dist}')
+    lp.model_path = os.path.join(f'D:/Documents/gs_output/',f'2d_kitchen_lego{op.depth_ratio}_ld{op.lambda_dist}')
     # lp.source_path = 'D:/Documents/gs_mov_trans/bowl_with_lego'
     training(lp, op, pp, args.test_iterations, args.save_iterations, args.checkpoint_iterations, args.start_checkpoint)
 
